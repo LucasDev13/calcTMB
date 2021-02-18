@@ -2,8 +2,11 @@ package br.com.calcTMB.service;
 
 import br.com.calcTMB.dto.PatientDTO;
 import br.com.calcTMB.model.Patient;
+import br.com.calcTMB.service.exceptions.DatabaseException;
 import br.com.calcTMB.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import br.com.calcTMB.repository.PatientRepository;
@@ -45,6 +48,17 @@ public class PatientService {
             return new PatientDTO(patient);
         }catch (EntityNotFoundException e){
             throw new ResourceNotFoundException("Id not found " + id);
+        }
+    }
+
+    @Transactional
+    public void delete (Long id){
+        try{
+            repository.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+            throw new ResourceNotFoundException("Id not found " + id);
+        }catch (DataIntegrityViolationException e){
+            throw new DatabaseException("Integrity violation");
         }
     }
 
