@@ -27,7 +27,7 @@ public class PatientService {
 
 
     public Patient insert(Patient entity){
-        entity.setTbm(calc.calcTbmMas(entity));
+        entity.setTbm(calc.calcTbm(entity));
         entity = repository.save(entity);
         return entity;
     }
