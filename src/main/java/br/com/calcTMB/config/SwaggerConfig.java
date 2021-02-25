@@ -29,7 +29,8 @@ public class SwaggerConfig {
     private ApiInfo metaInfo(){
         ApiInfo apiInfo = new ApiInfo(
                 "Patients API REST",
-                "API de cadastro e consulta de pacientes.",
+                "API de cadastro e consulta de pacientes com calculo automático da taxa " +
+                        "metabólica basal desse mesmo paciente.",
                 "1.0",
                 "Terms of service",
                 new Contact("Lucas Pontes", "https://www.linkedin.com/in/pontes-lucas/",

@@ -29,7 +29,7 @@ public class Patient implements Serializable {
     private Double weight;//peso
     private Integer height;//altura
     private String activityLevel;//nivel de atividade
-    private Double tbm;
+    private Double tbm;//taxa metabolica basal
 
     public Patient(){
     }

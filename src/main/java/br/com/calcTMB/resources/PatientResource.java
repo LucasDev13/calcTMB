@@ -30,7 +30,7 @@ public class PatientResource {
     private PatientService service;
 
     @PostMapping(value = "/save")
-    @ApiOperation(value = "Insere um novo paciente")
+    @ApiOperation(value = "Insere um novo paciente e calculo a taxa metabólica basal desse mesmo paciente.")
     public ResponseEntity<Patient> insert(@RequestBody Patient entity){
         entity = service.insert(entity);
         return ResponseEntity.ok().body(entity);

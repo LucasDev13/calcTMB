@@ -10,9 +10,9 @@ public class Calculator {
     public Double calcTbm(Patient patient) {
         Double result = 0.0;
         if(patient.getGender().equals("masculino")) {
-            result = 66.5 + (13.75 * patient.getWeight()) + (5.0 * patient.getHeight()) - (6.8 * patient.getAge());
+            result = 66 + (13.7 * patient.getWeight()) + (5.0 * patient.getHeight()) - (6.8 * patient.getAge());
         }else{
-            result = 665.1 + (9.56 * patient.getWeight()) + (1.8 * patient.getHeight()) - (4.7 * patient.getAge());
+            result = 665 + (9.6 * patient.getWeight()) + (1.8 * patient.getHeight()) - (4.7 * patient.getAge());
         }
         return result;
     }
