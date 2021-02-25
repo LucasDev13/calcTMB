@@ -2,14 +2,15 @@ package br.com.calcTMB.service;
 
 import br.com.calcTMB.dto.PatientDTO;
 import br.com.calcTMB.model.Patient;
+import br.com.calcTMB.repository.PatientRepository;
 import br.com.calcTMB.service.exceptions.DatabaseException;
 import br.com.calcTMB.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import br.com.calcTMB.repository.PatientRepository;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -19,9 +20,14 @@ import java.util.Optional;
 public class PatientService {
 
     @Autowired
+    private Calculator calc;
+
+    @Autowired
     private PatientRepository repository;
 
+
     public Patient insert(Patient entity){
+        entity.setTbm(calc.calcTbmMas(entity));
         entity = repository.save(entity);
         return entity;
     }
@@ -40,6 +46,7 @@ public class PatientService {
     }
 
     @Transactional
+    @Modifying
     public PatientDTO update (Long id, PatientDTO dto){
         try {
             Patient patient= repository.getOne(id);
@@ -52,6 +59,7 @@ public class PatientService {
     }
 
     @Transactional
+    @Modifying
     public void delete (Long id){
         try{
             repository.deleteById(id);

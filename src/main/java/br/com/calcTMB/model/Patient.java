@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -15,7 +16,9 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "tb_patient")
-public class Patient {
+public class Patient implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,6 +29,7 @@ public class Patient {
     private Double weight;//peso
     private Integer height;//altura
     private String activityLevel;//nivel de atividade
+    private Double tbm;
 
     public Patient(){
     }
@@ -94,6 +98,14 @@ public class Patient {
 
     public void setActivityLevel(String activityLevel) {
         this.activityLevel = activityLevel;
+    }
+
+    public Double getTbm() {
+        return tbm;
+    }
+
+    public void setTbm(Double tbm) {
+        this.tbm = tbm;
     }
 
     @Override
